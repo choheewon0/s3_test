@@ -32,4 +32,4 @@ jobs:
         run: ls -l target/
         
       - name: Upload to S3
-        run: aws s3 cp target s3://${{ secrets.S3_BUCKET_NAME }}
+        run: aws s3 cp target/my-app.war s3://${{ secrets.S3_BUCKET_NAME }}/test.war
