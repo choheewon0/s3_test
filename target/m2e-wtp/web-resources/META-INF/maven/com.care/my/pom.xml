@@ -125,7 +125,7 @@
 		<repository>
 			<id>my-s3-repo</id>
 			<name>My S3 Repository</name>
-			<url>s3://apring-test1-s3</url> <!-- S3 버킷 URL -->
+			<url>s3://spring-test1-s3</url> <!-- S3 버킷 URL -->
 		</repository>
 	</distributionManagement>
 
