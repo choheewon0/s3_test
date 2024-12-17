@@ -25,16 +25,9 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-2
 
       - name: Upload to S3
-        uses: jakejarvis/s3-sync-action@v0.5.0
-        with:
-          entryPoint: /bin/sh
-          args: |
-            -c "aws s3 sync target/ s3://${{ env.S3_BUCKET_NAME }}/$GITHUB_SHA.zip --delete --region ap-northeast-2"
-        env:
-          AWS_ACCESS_KEY_ID: ${{ env.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ env.AWS_SECRET_ACCESS_KEY }}
+        run: aws s3 cp target/my-app.jar s3://${{ secrets.S3_BUCKET_NAME }}/my-app.jar
